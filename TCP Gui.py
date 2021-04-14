@@ -1,8 +1,4 @@
-#!/usr/bin/env python
-# -*- coding:utf8 -*-
-# auther; 18793
-# Date：2019/9/6 11:35
-# filename: tcp_server.py
+
 import tkinter
 import tkinter.font as tkFont
 import socket
@@ -95,21 +91,21 @@ class ServerUI():
         :return:
         '''
 
-        # 得到用户在Text中输入的消息
+       
         message = self.inputText.get('1.0', tkinter.END)
-        # 格式化当前的时间
+
         theTime = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
         self.chatText.insert(tkinter.END, 'server' + theTime + "Say：\n")
         self.chatText.insert(tkinter.END, ' ' + message + '\n')
         if self.flag == True:
-            # 将消息发送到客户端
+           
             self.connection.send(message.encode())
             self.inputText.delete(0.0, message.__len__() - 1.0)
 
         else:
-            # Socket连接没有建立，提示用户
+           
             self.chatText.insert(tkinter.END, 'You have not established a connection with the client, the client cannot receive your message\n')
-            # 清空用户在Text中输入的消息
+           
             self.inputText.delete(0.0, message.__len__() - 1.0)
 
     def close(self):

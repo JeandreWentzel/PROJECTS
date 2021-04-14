@@ -1,8 +1,4 @@
-#!/usr/bin/env python
-# -*- coding:utf8 -*-
-# auther; 18793
-# Date：2019/9/6 10:36
-# filename: TCP_Server.py
+
 import socket
 import threading
 import time
@@ -10,7 +6,7 @@ import time
 
 def tcplink(sock, addr):
     print("[Receive a connection request from {}:{}]".format(addr[0], addr[1]))
-    # 发给客户端Welcom！信息
+   
     a = "Wellcome!"
     sock.send(a.encode())
     while True:
@@ -24,17 +20,17 @@ def tcplink(sock, addr):
     print("[From {}:{} The connection is closed]".format(addr[0], addr[1]))
 
 
-# 创建一个基于IPv4和TCP协议的Socket
+
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# 监听本机8888端口
+
 s.bind(('127.0.0.1', 8888))
-# 连接的最大数量为5
+
 s.listen(5)
 print("Waiting for the client to connect.....")
 
 while True:
-    # 接受一个新连接
+  
     sock, addr = s.accept()
-    # 创建新线程来处理TCP连接
+    
     t = threading.Thread(target=tcplink, args=(sock, addr))
     t.start()
